@@ -3,7 +3,6 @@ local Window = Library.CreateLib("Doors", "Midnight")
 local Tab = Window:NewTab("LocalPlayer")
 local Section = Tab:NewSection("Player Properties")
 local Utilities = Tab:NewSection("Player Properties")
-local key = game.Workspace.CurrentRooms.["0"].Assets.Key_Holder.["Meshes/Key_Holder_Cube (1)"].Position
 Section:NewButton("InfJump", "Executes an infinite jump UI", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/bruvzz/infinitejump/main/Protected.lua"))()
 end)
