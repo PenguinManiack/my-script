@@ -23,5 +23,3 @@ end)
 Section:NewButton("WolfScript", "WolfScript", function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/scriptforcostomer/main/namecool"))()-- function
 end) 
-local newTab     = Window:NewTab("credit")
-local newSection = newTab:NewSection("credit to PenguinManiack")
