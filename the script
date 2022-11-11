@@ -1,307 +1,132 @@
 local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
-local Window = Library.CreateLib("Doors", "Midnight")
-local Tab = Window:NewTab("LocalPlayer")
-local Section = Tab:NewSection("Player Properties")
-local Utilities = Tab:NewSection("Player Properties")
-Section:NewButton("InfJump", "Executes an infinite jump UI", function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/bruvzz/infinitejump/main/Protected.lua"))()
-end)
-Section:NewSlider("JumpPower", "Changes Player JumpPower", 250, 50, function(s) -- 500 (MaxValue) | 0 (MinValue)
-game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
-end)
-Section:NewButton("Noclip And Fly", "Fly and Noclip UI", function()
--- Made by bossorlose13
---
- 
--- Instances:
- 
-local ScreenGui = Instance.new("ScreenGui")
-local mainframe = Instance.new("Frame")
-local Bossorlose13sGUI = Instance.new("TextLabel")
-local Noclip = Instance.new("TextButton")
-local Fly = Instance.new("TextButton")
- 
---Properties:
- 
-ScreenGui.Parent = game.CoreGui
- 
-mainframe.Name = "mainframe"
-mainframe.Parent = ScreenGui
-mainframe.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-mainframe.BorderColor3 = Color3.fromRGB(0, 0, 0)
-mainframe.Position = UDim2.new(0.135501355, 0, 0.306020081, 0)
-mainframe.Size = UDim2.new(0, 282, 0, 180)
- 
-Bossorlose13sGUI.Name = "Mye's Noclip N fly"
-Bossorlose13sGUI.Parent = mainframe
-Bossorlose13sGUI.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-Bossorlose13sGUI.Size = UDim2.new(0, 282, 0, 22)
-Bossorlose13sGUI.Font = Enum.Font.SourceSans
-Bossorlose13sGUI.Text = "Mye's Noclip and fly"
-Bossorlose13sGUI.TextColor3 = Color3.fromRGB(255, 0, 0)
-Bossorlose13sGUI.TextSize = 14.000
- 
-Noclip.Name = "Noclip"
-Noclip.Parent = mainframe
-Noclip.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
-Noclip.Position = UDim2.new(0.0283687934, 0, 0.294444442, 0)
-Noclip.Size = UDim2.new(0, 77, 0, 22)
-Noclip.Font = Enum.Font.SourceSans
-Noclip.Text = "Noclip"
-Noclip.TextColor3 = Color3.fromRGB(0, 0, 0)
-Noclip.TextSize = 14.000
-Noclip.MouseButton1Down:connect(function()
-local noclip = true char = game.Players.LocalPlayer.Character while true do if noclip == true then for _,v in pairs(char:children()) do pcall(function() if v.className == "Part" then v.CanCollide = false elseif v.ClassName == "Model" then v.Head.CanCollide = false end end) end end game:service("RunService").Stepped:wait() end
-end)
-Fly.Name = "Fly"
-Fly.Parent = mainframe
-Fly.BackgroundColor3 = Color3.fromRGB(85, 0, 255)
-Fly.Position = UDim2.new(0.723404229, 0, 0.305555552, 0)
-Fly.Size = UDim2.new(0, 48, 0, 20)
-Fly.Font = Enum.Font.SourceSans
-Fly.Text = "Fly"
-Fly.TextColor3 = Color3.fromRGB(0, 0, 0)
-Fly.TextSize = 14.000
-Fly.MouseButton1Down:connect(function()
-repeat wait()
-until game.Players.LocalPlayer and game.Players.LocalPlayer.Character and game.Players.LocalPlayer.Character:findFirstChild("Torso") and game.Players.LocalPlayer.Character:findFirstChild("Humanoid")
-local mouse = game.Players.LocalPlayer:GetMouse()
-repeat wait() until mouse
-local plr = game.Players.LocalPlayer
-local torso = plr.Character.Torso
-local flying = true
-local deb = true
-local ctrl = {f = 0, b = 0, l = 0, r = 0}
-local lastctrl = {f = 0, b = 0, l = 0, r = 0}
-local maxspeed = 50
-local speed = 0
- 
-function Fly()
-local bg = Instance.new("BodyGyro", torso)
-bg.P = 9e4
-bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
-bg.cframe = torso.CFrame
-local bv = Instance.new("BodyVelocity", torso)
-bv.velocity = Vector3.new(0,0.1,0)
-bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
-repeat wait()
-plr.Character.Humanoid.PlatformStand = true
-if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
-speed = speed+.5+(speed/maxspeed)
-if speed > maxspeed then
-speed = maxspeed
-end
-elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
-speed = speed-1
-if speed < 0 then
-speed = 0
-end
-end
-if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
-bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
-lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
-elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
-bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
-else
-bv.velocity = Vector3.new(0,0.1,0)
-end
-bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
-until not flying
-ctrl = {f = 0, b = 0, l = 0, r = 0}
-lastctrl = {f = 0, b = 0, l = 0, r = 0}
-speed = 0
-bg:Destroy()
-bv:Destroy()
-plr.Character.Humanoid.PlatformStand = false
-end
-mouse.KeyDown:connect(function(key)
-if key:lower() == "e" then
-if flying then flying = false
-else
-flying = true
-Fly()
-end
-elseif key:lower() == "w" then
-ctrl.f = 1
-elseif key:lower() == "s" then
-ctrl.b = -1
-elseif key:lower() == "a" then
-ctrl.l = -1
-elseif key:lower() == "d" then
-ctrl.r = 1
-end
-end)
-mouse.KeyUp:connect(function(key)
-if key:lower() == "w" then
-ctrl.f = 0
-elseif key:lower() == "s" then
-ctrl.b = 0
-elseif key:lower() == "a" then
-ctrl.l = 0
-elseif key:lower() == "d" then
-ctrl.r = 0
-end
-end)
-Fly()
- 
-end)
-Utilities:NewButton("Teleport to Room 0 Key", "teleports u to room 0 key", function()
-  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(key)
-end)
-local function JETILC_fake_script() -- mainframe.LocalScript
-local script = Instance.new('LocalScript', mainframe)
- 
-script.parent.Selectable = true
-script.Parent.Active = true
-script.parent.Draggable = true
- 
-end
-coroutine.wrap(JETILC_fake_script)()
-end)
-Section:NewButton("Speed (cant turn off sadly)", "Speed", function()
-while true do
-game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 150
-task.wait()
-print("speed looped!")
-end
-end)
---Entities
-local EntitiesWindow = Window:NewTab("Entities")
-local Entities = EntitiesWindow:NewSection("Main Entities")
-
-Entities:NewKeybind("Rush", "Summons Rush", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/Rush.lua"))()
-end)
-
-Entities:NewKeybind("A-50", "Summons A-50", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/A-60.lua"))()
-end)
-
-Entities:NewKeybind("Deergod", "Summons Deergod", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/DeerGod.lua"))()
-end)
-
---This one is broken so no loadstring
-Entities:NewKeybind("Specimen2 No Chase", "Summons Specimen2", Enum.KeyCode.Q, function()
-    local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
--- Create entity
-local entity = Creator.createEntity({
-    Model = "https://github.com/fnaclol/sussy-bois/raw/main/Specimen2.rbxm",
-    Speed = 30,
-    DelayTime = 0,
-    HeightOffset = 0,
-    CanKill = true,
-    BreakLights = false,
-    FlickerLights = {
-        false,
-        100,
-    },
-    Cycles = {
-        Min = 1,
-        Max = 1,
-        WaitTime = 0.1,
-    },
-    CamShake = {
-        false,
-        {5, 15, 0.1, 1},
-        100,
-    },
-    CustomDialog = {"You died to whom you call Specimen2", "Specimen2 will spawn every 1 second as to give it a look of it chasing you", "Specimen2 is also 10% faster then you", "The challange is to run away from him and use non closet or bed forms of hiding (note: vents do not work) ", "Anyways good luck and run next time!"}
-})
--- Run the created entity
-Creator.runEntity(entity)
-end)
-
----------------
---This script calls a nil value but it isnt.
-Entities:NewKeybind("Firebrand", "Summons Firebrand", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/Firebrando.lua"))()
-end)
-
-Entities:NewKeybind("Matcher", "Summons Matcher", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/Matcher.lua"))()
-end)
-
---Another error script, but it still works
-Entities:NewKeybind("Rebound", "Summons Rebound ", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/Redound.lua"))()
-end)
-
-Entities:NewKeybind("Terror", "Summons Terror", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/TerrorStrikes.lua"))()
-end)
-
---Entities Section done for now
---Fun Section
-local Entities = EntitiesWindow:NewSection("Goofy Entities")
-
-Entities:NewKeybind("Train", "Gawd damn", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/Trainy.lua"))()
-end)
-
-Entities:NewKeybind("Nerd", "Goofy Ahh", Enum.KeyCode.Q, function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/ChronoAccelerator/DoorsMain/main/Nerd.lua"))()
-end)
-
-local Entities = EntitiesWindow:NewSection("Legacy Entities")
-
-Entities:NewKeybind("Screech", "Psst!", Enum.KeyCode.Q, function()
-    local Data = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game.RemoteListener.Modules.Screech)(Data)
-end)
-
-Entities:NewKeybind("Halt", "@#~%^#$%!#$#4", Enum.KeyCode.Q, function()
-    local Data = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)require(game.ReplicatedStorage.ClientModules.EntityModules.Shade).stuff(Data, workspace.CurrentRooms[tostring(game.ReplicatedStorage.GameData.LatestRoom.Value)])
-end)
-
-Entities:NewKeybind("Glitch", "@#~%^#$%!#$#4", Enum.KeyCode.Q, function()
-    local Data = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)require(game.ReplicatedStorage.ClientModules.EntityModules.Glitch).stuff(Data, workspace.CurrentRooms[tostring(game.ReplicatedStorage.GameData.LatestRoom.Value)])
-end)
-
-
---End of entire entities section, misc section
-local Bruh = EntitiesWindow:NewSection("other/misc")
-Bruh:NewKeybind("Redroom", "Redify the room you're in", Enum.KeyCode.Q, function()
-    firesignal(game.ReplicatedStorage.Bricks.UseEventModule.OnClientEvent, "tryp", workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value], 10000) 
-end)
-
-Bruh:NewKeybind("Flicker Lights", "Flicker lights endlessly", Enum.KeyCode.Q, function()
-    firesignal(game.ReplicatedStorage.Bricks.UseEventModule.OnClientEvent, "flickerLights", game.ReplicatedStorage.GameData.LatestRoom.Value, 100000) 
-end)
-
-Bruh:NewKeybind("Break Lights", "Let there be no light!", Enum.KeyCode.Q, function()
-    firesignal(game.ReplicatedStorage.Bricks.UseEventModule.OnClientEvent, "flickerLights", game.ReplicatedStorage.GameData.LatestRoom.Value, 100) 
-end)
-
-Bruh:NewKeybind("Seek Eye Room", "Force seek to look at yo goofy self", Enum.KeyCode.Q, function()
-    require(game:GetService("ReplicatedStorage").ClientModules.EntityModules.Seek).tease(nil, workspace.CurrentRooms:WaitForChild(game.ReplicatedStorage.GameData.LatestRoom.Value), 14, 1665596753, true)
-end)
-
-Bruh:NewKeybind("Heartbeat Minigame", "Have a heartattack", Enum.KeyCode.Q, function()
-    firesignal(game.ReplicatedStorage.Bricks.ClutchHeartbeat.OnClientEvent)
-end)
-
---Settings Section
-local SettingsWindow = Window:NewTab("Settings")
-local Settings = SettingsWindow:NewSection("Main Settings")
-
-Settings:NewKeybind("Open/Close GUI", "Close & Open gui", Enum.KeyCode.Q, function()
-	Library:ToggleUI()
-end)
-
-Settings:NewButton("Discord", "Just in case :)", function()
-    setclipboard("https://discord.gg/vjjcYyCpAg")
-    game:GetService("StarterGui"):SetCore("SendNotification", {Title = "MyeWare Executor", Text = "Copied Invite!"})
-end)
-
-Settings:NewLabel("hi there")
+local Window  = Library.CreateLib("PenguinManiacks script opener", "Ocean")
 local Tab     = Window:NewTab("scripts")
 local Section = Tab:NewSection("balls")
 Section:NewButton("vynixius", "Creddit to vynixuis, this is an all around great script ", function()
 loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Loader.lua"))()
 end)
-Section:NewButton("entity spawner", "credit to the name of the guy on the script cus idk ", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/Quantiium/DoorsScript/main/LoadUI's.lua"))()
+Section:NewButton("reagans script", "Creddit to myself, this is an all around great script ", function()
+        oadstring(game:HttpGet("https://gist.githubusercontent.com/Mye123/87ab74fb91d19e55f3aee9cdb7bb773b/raw/9371e6140bff7cbb98fc53a03e3c6f7215bb834c/gistfile1.txt"))()
     end)
-        Section:NewButton("inf yeild", "no credit boxo ", function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
-            end)
+Section:NewButton("entity spawner", "credit to the name of the guy on the script cus idk ", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/StupidProAArsenal/main/main/deer%20customs',true))()
+    end)
+Section:NewButton("inf yeild", "no credit boxo ", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+     end)
+Section:NewButton("plamens gui", "credit to plamen", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/plamen6789/DoorsEntitySummonerGUI/main/EntityGUI'))()
+     end)
+ Section:NewButton("phys gun", "the guy who made it", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SernoxSergal/Sernox-s-Door-Gui/main/PhysGun.lua"))()
+    end)
+    Section:NewButton("senors", "only paid lmmao", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SernoxSergal/Sernox-s-Door-Gui/main/Gui"))()-- function
+    end)
+    Section:NewButton("crucufix", "only for you dady", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xactver/Xactver/main/obf_ouV6xBGv9rfye6WWWxwScKk5uQ71O5qM18meX3egQ9EaoXK9343AtkzV9avyh0lo.lua"))()-- function
+    end)   
+local ArsenalTab     = Window:NewTab("arsenal")
+local ArsenalSection = ArsenalTab:NewSection("penis")
+ArsenalSection:NewButton("good aimbot and shix", "your mom", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/katrina367/ScriptBlox-Projects/main/OblivionAutoEXEV1'))()-- function
+    end)            
+ArsenalSection:NewButton("inf yeild", "no credit boxo ", function()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end)                    
+
+local PrisonLifeTab     = Window:NewTab("prison life")
+local PrisonLifeSection = PrisonLifeTab:NewSection("prison life")
+    PrisonLifeSection:NewButton("m4a1 gun script", "makes the m4 a1 shoot verry fast", function()
+        local p = game.Players.LocalPlayer
+        local toggle = true
+        local fuck = "M4A1" --You choose what gun you want idc
+        
+        function getGun(gunName)
+            game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[gunName].ITEMPICKUP)
+        end
+        
+        getGun("Remington 870")
+        getGun("M4A1")
+        getGun("AK-47")
+        getGun("M9")
+        
+        wait(1)
+        
+        --You choose your gun settings idc
+        function infAmmo(GunThing)   
+            local gun = p.Backpack:WaitForChild(GunThing) or p.Character:WaitForChild(GunThing)
+            local Edit = require(gun:WaitForChild("GunStates"))
+            Edit["MaxAmmo"] = math.huge
+            Edit["StoredAmmo"] = math.huge
+            Edit["AmmoPerClip"] = math.huge
+            Edit["Range"] = math.huge
+            Edit["CurrentAmmo"] = math.huge
+            --Edit["Bullets"] = 13
+            Edit["ReloadTime"] = 0
+            Edit["FireRate"] = 0
+            Edit["AutoFire"] = true
+        end
+        
+        p.Character.Humanoid.Died:Connect(function()
+            wait(0.1)
+            toggle = false
+            warn("stopped")
+        end)
+        
+        infAmmo(tostring(fuck))
+        
+        local shit = p.Backpack:WaitForChild(tostring(fuck)) or p.Character:WaitForChild(tostring(fuck))
+        
+        while toggle == true do wait(1)
+            game:GetService("ReplicatedStorage").ReloadEvent:FireServer(shit) 
+        end 
+-- function
+    end) 
+    PrisonLifeSection:NewButton("admin script", "makes you admin", function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/VPrNqGKU", true))()
+    end) 
+    PrisonLifeSection:NewButton("remington script", "makes theremington shoot rapidly", function()
+        local p = game.Players.LocalPlayer
+        local toggle = true
+        local fuck = "Remington 870" --You choose what gun you want idc
+        
+        function getGun(gunName)
+            game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[gunName].ITEMPICKUP)
+        end
+        
+        getGun("Remington 870")
+        getGun("M4A1")
+        getGun("AK-47")
+        getGun("M9")
+        
+        wait(1)
+        
+        --You choose your gun settings idc
+        function infAmmo(GunThing)   
+            local gun = p.Backpack:WaitForChild(GunThing) or p.Character:WaitForChild(GunThing)
+            local Edit = require(gun:WaitForChild("GunStates"))
+            Edit["MaxAmmo"] = math.huge
+            Edit["StoredAmmo"] = math.huge
+            Edit["AmmoPerClip"] = math.huge
+            Edit["Range"] = math.huge
+            Edit["CurrentAmmo"] = math.huge
+            Edit["Bullets"] = 5
+            Edit["ReloadTime"] = 0
+            Edit["FireRate"] = 0
+            Edit["AutoFire"] = true
+        end
+        
+        p.Character.Humanoid.Died:Connect(function()
+            wait(0.1)
+            toggle = false
+            warn("stopped")
+        end)
+        
+        infAmmo(tostring(fuck))
+        local shit = p.Backpack:WaitForChild(tostring(fuck)) or p.Character:WaitForChild(tostring(fuck))
+        
+        while toggle == true do wait(1)
+            game:GetService("ReplicatedStorage").ReloadEvent:FireServer(shit) 
+        end
+    end) 
