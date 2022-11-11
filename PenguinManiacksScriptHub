@@ -1,0 +1,25 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window  = Library.CreateLib("PenguinManiacks script opener", "DarkTheme")
+local Tab     = Window:NewTab("animal scripts")
+local Section = Tab:NewSection("balls")
+Section:NewButton("Kill all.", "it does kill all", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/1gXhwjBu"))() -- function
+end) 
+Section:NewButton("LoopFling", "loopfling", function()
+    loadstring(game:HttpGet('https://github.com/DigitalityScripts/roblox-scripts/raw/main/loop%20fling%20all'))()-- function
+end) 
+Section:NewButton("Insta_kill", "Insta_kill", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/TjvaVjRE"))()-- function
+end) 
+Section:NewButton("Godmode", "Godmode", function()
+    loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()-- function
+end) 
+Section:NewButton("Dezis", "Dezis", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/scriptforcostomer/main/scriptforcostomer"))()-- function
+end) 
+Section:NewButton("Crowz grind", "balls", function()
+    loadstring(game:HttpGet("https://pastebin.com/raw/A5MYSGw4"))()-- function
+end) 
+Section:NewButton("WolfScript", "WolfScript", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/scriptforcostomer/main/namecool"))()-- function
+end) 
