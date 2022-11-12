@@ -14,8 +14,8 @@ end)
 Section:NewButton("Godmode", "Godmode", function()
     loadstring(game:HttpGet('https://raw.githubusercontent.com/Dvrknvss/UniversalFEScriptHub/main/Script'))()-- function
 end) 
-Section:NewButton("Dezis", "Dezis", function()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/deez/main/Bruh”))()-- function
+Section:NewButton("crows script hub", "script hub", function()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/sa/main/adsasd"))()-- function
 end) 
 Section:NewButton("Crowz grind", "balls", function()
     loadstring(game:HttpGet("https://pastebin.com/raw/A5MYSGw4"))()-- function
