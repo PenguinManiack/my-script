@@ -1,0 +1,144 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window  = Library.CreateLib("PenguinManiacks script opener", "Ocean")
+local Tab     = Window:NewTab("scripts")
+local Section = Tab:NewSection("balls")
+Section:NewButton("vynixius", "Creddit to vynixuis, this is an all around great script ", function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Vynixius/main/Loader.lua"))()
+end)
+Section:NewButton("reagans script", "Creddit to myself, this is an all around great script ", function()
+        loadstring(game:HttpGet("https://gist.githubusercontent.com/Mye123/87ab74fb91d19e55f3aee9cdb7bb773b/raw/9371e6140bff7cbb98fc53a03e3c6f7215bb834c/gistfile1.txt"))()
+    end)
+Section:NewButton("entity spawner", "credit to the name of the guy on the script cus idk ", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/StupidProAArsenal/main/main/deer%20customs',true))()
+    end)
+Section:NewButton("inf yeild", "no credit boxo ", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+     end)
+Section:NewButton("plamens gui", "credit to plamen", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/plamen6789/DoorsEntitySummonerGUI/main/EntityGUI'))()
+     end)
+ Section:NewButton("phys gun", "the guy who made it", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SernoxSergal/Sernox-s-Door-Gui/main/PhysGun.lua"))()
+    end)
+    Section:NewButton("senors", "only paid lmmao", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/SernoxSergal/Sernox-s-Door-Gui/main/Gui"))()-- function
+    end)
+    Section:NewButton("crucufix", "only for you dady", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/Xactver/Xactver/main/obf_ouV6xBGv9rfye6WWWxwScKk5uQ71O5qM18meX3egQ9EaoXK9343AtkzV9avyh0lo.lua"))()-- function
+    end)   
+    Section:NewButton("hardcore", "makes the game really hard", function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/UkqP7g6x"))()
+    end) 
+    Section:NewButton("gun", "gun", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/gun/main/gun"))()  -- function
+    end) 
+    Section:NewButton("doors", "script", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/PenguinManiack/op-doors-script/main/doors"))() -- function
+    end) 
+    Section:NewButton("gun zeppsy", "gun", function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/ZepsyyCodesLUA/Utilities/main/DOORSFpsGun.lua?token=GHSAT0AAAAAAB2POHILOXMAHBQ2GN2QD2MQY3SXTCQ"))()-- loadstring-- function
+    end) 
+local ArsenalTab     = Window:NewTab("arsenal")
+local ArsenalSection = ArsenalTab:NewSection("penis")
+ArsenalSection:NewButton("good aimbot and shix", "your mom", function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/katrina367/ScriptBlox-Projects/main/OblivionAutoEXEV1'))()-- function
+    end)            
+ArsenalSection:NewButton("inf yeild", "no credit boxo ", function()
+         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end)                    
+
+local PrisonLifeTab     = Window:NewTab("prison life")
+local PrisonLifeSection = PrisonLifeTab:NewSection("prison life")
+    PrisonLifeSection:NewButton("m4a1 gun script", "makes the m4 a1 shoot verry fast", function()
+        local p = game.Players.LocalPlayer
+        local toggle = true
+        local fuck = "M4A1" --You choose what gun you want idc
+        
+        function getGun(gunName)
+            game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[gunName].ITEMPICKUP)
+        end
+        
+        getGun("Remington 870")
+        getGun("M4A1")
+        getGun("AK-47")
+        getGun("M9")
+        
+        wait(1)
+        
+        --You choose your gun settings idc
+        function infAmmo(GunThing)   
+            local gun = p.Backpack:WaitForChild(GunThing) or p.Character:WaitForChild(GunThing)
+            local Edit = require(gun:WaitForChild("GunStates"))
+            Edit["MaxAmmo"] = math.huge
+            Edit["StoredAmmo"] = math.huge
+            Edit["AmmoPerClip"] = math.huge
+            Edit["Range"] = math.huge
+            Edit["CurrentAmmo"] = math.huge
+            --Edit["Bullets"] = 13
+            Edit["ReloadTime"] = 0
+            Edit["FireRate"] = 0
+            Edit["AutoFire"] = true
+        end
+        
+        p.Character.Humanoid.Died:Connect(function()
+            wait(0.1)
+            toggle = false
+            warn("stopped")
+        end)
+        
+        infAmmo(tostring(fuck))
+        
+        local shit = p.Backpack:WaitForChild(tostring(fuck)) or p.Character:WaitForChild(tostring(fuck))
+        
+        while toggle == true do wait(1)
+            game:GetService("ReplicatedStorage").ReloadEvent:FireServer(shit) 
+        end 
+-- function
+    end) 
+    PrisonLifeSection:NewButton("admin script", "makes you admin", function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/VPrNqGKU", true))()
+    end) 
+    PrisonLifeSection:NewButton("remington script", "makes theremington shoot rapidly", function()
+        local p = game.Players.LocalPlayer
+        local toggle = true
+        local fuck = "Remington 870" --You choose what gun you want idc
+        
+        function getGun(gunName)
+            game.Workspace.Remote.ItemHandler:InvokeServer(workspace.Prison_ITEMS.giver[gunName].ITEMPICKUP)
+        end
+        
+        getGun("Remington 870")
+        getGun("M4A1")
+        getGun("AK-47")
+        getGun("M9")
+        
+        wait(1)
+        
+        --You choose your gun settings idc
+        function infAmmo(GunThing)   
+            local gun = p.Backpack:WaitForChild(GunThing) or p.Character:WaitForChild(GunThing)
+            local Edit = require(gun:WaitForChild("GunStates"))
+            Edit["MaxAmmo"] = math.huge
+            Edit["StoredAmmo"] = math.huge
+            Edit["AmmoPerClip"] = math.huge
+            Edit["Range"] = math.huge
+            Edit["CurrentAmmo"] = math.huge
+            Edit["Bullets"] = 5
+            Edit["ReloadTime"] = 0
+            Edit["FireRate"] = 0
+            Edit["AutoFire"] = true
+        end
+        
+        p.Character.Humanoid.Died:Connect(function()
+            wait(0.1)
+            toggle = false
+            warn("stopped")
+        end)
+        
+        infAmmo(tostring(fuck))
+        local shit = p.Backpack:WaitForChild(tostring(fuck)) or p.Character:WaitForChild(tostring(fuck))
+        
+        while toggle == true do wait(1)
+            game:GetService("ReplicatedStorage").ReloadEvent:FireServer(shit) 
+        end
+    end) 
